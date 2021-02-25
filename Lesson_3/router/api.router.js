@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const userRouter = require ('./user.router');
+const userRouter = require('./user.router');
 
 router.use('/users', userRouter);
 
