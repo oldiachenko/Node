@@ -1,24 +1,12 @@
-const { models } = require('../dataBase');
+const { models: { userModel } } = require('../dataBase');
 require('../dataBase/model/Car');
 
 module.exports = {
-    getUsers: async (query) => {
-        const users = await models.userModel.find(query);
+    getUsers: (query) => userModel.find(query),
 
-        return users;
-    },
+    findUserById: (userId) => userModel.findById(userId),
 
-    findUserById: async (userId) => {
-        const user = await models.userModel.findById(userId);
+    createUser: (userObject) => userModel.create(userObject),
 
-        return user;
-    },
-
-    createUser: async (userObject) => {
-        await models.userModel.create(userObject);
-    },
-
-    deleteUser: async (userId) => {
-        await models.userModel.deleteOne(userId);
-    }
+    deleteUser: (userId) => userModel.deleteOne(userId)
 };
