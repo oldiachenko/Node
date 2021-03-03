@@ -1,3 +1,4 @@
+const Car = require('../dataBase/model/Car');
 const errorCodes = require('../constant/errorCodes.enum');
 const errorMessages = require('../message/error.messages');
 
@@ -22,6 +23,12 @@ module.exports = {
         try {
             const { preferLang } = req.body;
             const { _id } = req.params;
+
+            const carById = Car.findById(_id);
+
+            if (!carById) {
+                throw new Error(errorMessages.CAR_DOESNOT_EXIST[preferLang]);
+            }
 
             if (!_id || _id.length !== 24) {
                 throw new Error(errorMessages.NOT_VALID_ID[preferLang]);

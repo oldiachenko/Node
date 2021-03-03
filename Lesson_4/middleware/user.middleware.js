@@ -1,5 +1,6 @@
 const errorCodes = require('../constant/errorCodes.enum');
 const errorMessages = require('../message/error.messages');
+const User = require('../dataBase/model/User');
 
 module.exports = {
     isNameValid: (req, res, next) => {
@@ -44,6 +45,12 @@ module.exports = {
         try {
             const { preferLang } = req.body;
             const { _id } = req.params;
+
+            const userById = User.findById(_id);
+
+            if (!userById) {
+                throw new Error(errorMessages.USER_DOESNOT_EXIST[preferLang]);
+            }
 
             if (!_id || _id.length !== 24) {
                 throw new Error(errorMessages.NOT_VALID_ID[preferLang]);
