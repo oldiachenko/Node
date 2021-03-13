@@ -18,8 +18,6 @@ module.exports = {
 
             const tokens = tokenizer();
 
-            console.log(tokens);
-
             await oAuthService.createTokens({ ...tokens, user: user._id });
 
             res.json(tokens);

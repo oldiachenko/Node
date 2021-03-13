@@ -1,6 +1,4 @@
 const { errorCodesEnum } = require('../constant');
-const { models } = require('../dataBase/index');
-const { errorMessages } = require('../message');
 const { idValidator, userValidators } = require('../validator');
 
 module.exports = {
@@ -34,16 +32,9 @@ module.exports = {
 
     isIdValid: (req, res, next) => {
         try {
-            const { preferLang = 'en' } = req.body;
             const { _id } = req.params;
 
             const { error } = idValidator.validate(_id);
-
-            const userById = models.userModel.findById(_id);
-
-            if (!userById) {
-                throw new Error(errorMessages.USER_DOESNOT_EXIST[preferLang]);
-            }
 
             if (error) {
                 throw new Error(error.details[0].message);
