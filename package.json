@@ -15,9 +15,12 @@
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.18"
+    "mongoose": "^5.11.18",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.1"
   },
   "devDependencies": {
+    "@types/sequelize": "^4.28.9",
     "nodemon": "^2.0.6",
     "husky": "^4.3.0",
     "eslint": "^7.14.0",
