@@ -2,11 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const { Sequelize, DataTypes } = require('sequelize');
 
+const { constants } = require('../../constant');
+
 module.exports = (() => {
     let instance;
 
     const initConnection = () => {
-        const client = new Sequelize('sept-2020', 'root', 'root', { dialect: 'mysql' });
+        const client = new Sequelize(constants.DataBaseName, constants.UserName, constants.UserPassword, { dialect: 'mysql' });
 
         const models = {};
         const modelsPath = path.join(process.cwd(), 'dataBase', 'MySql', 'models');
